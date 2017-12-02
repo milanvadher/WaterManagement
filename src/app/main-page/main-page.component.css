@@ -1,0 +1,38 @@
+  .example-card {
+    width: 300px;
+    background:#FFFFFF;
+    padding:2.5em;
+    left:50%;
+    margin-left:-150px;
+    padding-top: 50px;
+  }
+
+  .logo {
+      text-align: center;
+      /* padding-bottom: 10px; */
+  }
+
+  .material-icons {
+    font-size: 100px;
+    color: rgb(247, 197, 89);
+    text-shadow: 2px 1px 5px #000000;
+  }
+
+  .space {
+      padding: 30px;
+  }
+
+  .button-login {
+      text-align: center;
+      color: #000000;
+  }
+
+  .title {
+      font-size: 24px;
+      text-align: center;
+      text-transform: uppercase;
+  }
+
+.my-container {
+    background-color: rgb(98, 192, 192);
+ }

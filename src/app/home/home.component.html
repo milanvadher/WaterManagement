@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Hello, world!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      Water Management Server Panal
+    </a>
+  </nav>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">UserID</th>
+        <th scope="col">User</th>
+        <th scope="col">Area</th>
+        <th scope="col">Members</th>
+        <th scope="col">Requirement</th>
+        <th scope="col">Approval</th>
+        <th scope="col">Submit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users;let i=index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{user.userID}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.area}}</td>
+        <td>{{user.members}}</td>
+        <td>{{user.summary}}
+        </td>
+        <td>
+          <span class="paddingr">No</span>
+          <mat-slide-toggle></mat-slide-toggle>
+          <span class="paddingl">Yes</span>
+        </td>
+        <td>
+          <button mat-raised-button type="button" class="btn btn-success" (click)="clickMethod(user.members)">Submit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</body>
+
+</html>
+
