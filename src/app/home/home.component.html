@@ -31,14 +31,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users;let i=index">
+      <tr *ngFor="let user of homedata | async ;let i=index">
         <th scope="row">{{i + 1}}</th>
-        <td>{{user.userID}}</td>
-        <td>{{user.username}}</td>
+        <th scope="row">{{user.id}}</th>        
+        <td>{{user.name}}</td>
         <td>{{user.area}}</td>
         <td>{{user.members}}</td>
-        <td>{{user.summary}}
-        </td>
+        <td>{{user.purpose}}</td>
         <td>
           <span class="paddingr">No</span>
           <mat-slide-toggle></mat-slide-toggle>

@@ -31,12 +31,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users;let i=index">
+      <tr *ngFor="let user of industry | async ;let i=index">
         <th scope="row">{{i + 1}}</th>
-        <td>{{user.i_id}}</td>
-        <td>{{user.i_name}}</td>
-        <td>{{user.i_type}}</td>
-        <td>{{user.requirement}}</td>
+        <td>{{user.id}}</td>
+        <td>{{user.industryName}}</td>
+        <td>{{user.industryType}}</td>
+        <td>{{user.industryPurpose}}</td>
+        <td>{{user.members}}</td>
         <td>{{user.summary}}
         </td>
         <td>
@@ -45,7 +46,7 @@
           <span class="paddingl">Yes</span>
         </td>
         <td>
-          <button mat-raised-button type="button" class="btn btn-success" (click)="clickMethod(user.requirement)">Submit</button>
+          <button mat-raised-button type="button" class="btn btn-success" (click)="clickMethod(user.members)">Submit</button>
         </td>
       </tr>
     </tbody>

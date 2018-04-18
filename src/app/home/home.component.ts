@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../app/rest.service';
 import { HttpModule } from '@angular/http';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,10 @@ import { HttpModule } from '@angular/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  homedata: Observable<{}[]>;
   liter: any;
 
-  constructor(public restProvider: RestService) {
+  constructor(public restProvider: RestService, public firestore: AngularFirestore) {
     this.getUsers();
   }
 
@@ -18,17 +21,13 @@ export class HomeComponent implements OnInit {
   users: any;
 
   getUsers() {
-    this.restProvider.addUser({})
-      .then(data => {
-        console.log(data);
-        this.users = data;
-        console.log(this.users);
-      });
+    this.homedata = this.firestore.collection(`homeData`).valueChanges();
+    console.log(this.homedata);
   }
 
   clickMethod(members) {
-    if(confirm("Are you sure to Supply "+members*150+" Liters")) {
-      this.submit(members*150);
+    if (confirm('Are you sure to Supply ' + members * 150 + ' Liters')) {
+      this.submit(members * 150);
     }
   }
 
@@ -43,7 +42,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
       });
 
-    console.log("clicked submit")
+    console.log('clicked submit');
   }
 
   ngOnInit() {

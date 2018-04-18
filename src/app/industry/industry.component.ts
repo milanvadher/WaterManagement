@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../app/rest.service';
 import { HttpModule } from '@angular/http';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-industry',
@@ -9,7 +11,8 @@ import { HttpModule } from '@angular/http';
 })
 export class IndustryComponent implements OnInit {
 
-  constructor(public restProvider: RestService) { 
+  industry: Observable<{}[]>;
+  constructor(public restProvider: RestService, public firestore: AngularFirestore) {
     this.getIndus();
   }
 
@@ -17,16 +20,12 @@ export class IndustryComponent implements OnInit {
   users: any;
 
   getIndus() {
-    this.restProvider.getIndus({})
-    .then(data => {
-      console.log(data);
-      this.users = data;
-      console.log(this.users);
-    });
+    this.industry = this.firestore.collection(`industrydata`).valueChanges();
+    console.log(this.industry);
   }
 
   clickMethod(_requirement) {
-    if(confirm("Are you sure to Supply "+_requirement+" Liters")) {
+    if (confirm('Are you sure to Supply ' + _requirement + ' Liters')) {
       this.submit(_requirement);
     }
   }
@@ -41,7 +40,7 @@ export class IndustryComponent implements OnInit {
       }, (err) => {
         console.log(err);
       });
-    }
+  }
 
   ngOnInit() {
   }
