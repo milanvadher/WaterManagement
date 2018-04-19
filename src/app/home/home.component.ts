@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  allow = false;
   homedata: Observable<{}[]>;
   liter: any;
 
@@ -25,27 +26,31 @@ export class HomeComponent implements OnInit {
     console.log(this.homedata);
   }
 
-  clickMethod(members) {
-    if (confirm('Are you sure to Supply ' + members * 150 + ' Liters')) {
-      this.submit(members * 150);
+  clickMethod(user) {
+    if (this.allow === true) {
+      if (confirm('Are you sure to Supply ' + user.members * 150 + ' Liters')) {
+        this.submit(user);
+      }
+    } else {
+      alert('You not supply the water');
     }
   }
 
-  submit(liter) {
-    const text = {
-      'liter': liter
-    };
-    this.restProvider.dataAPI(text)
-      .then(data => {
-        console.log(data);
-      }, (err) => {
-        console.log(err);
-      });
-
+  submit(user) {
+    this.restProvider.dataAPIhome(user);
     console.log('clicked submit');
   }
 
   ngOnInit() {
+  }
+
+  onChange(data) {
+    if (data.checked === true) {
+      this.allow = true;
+    } else {
+      this.allow = false;
+    }
+    console.log(data);
   }
 
 }

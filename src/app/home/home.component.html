@@ -40,11 +40,11 @@
         <td>{{user.purpose}}</td>
         <td>
           <span class="paddingr">No</span>
-          <mat-slide-toggle></mat-slide-toggle>
+          <mat-slide-toggle (change)="onChange($event)"></mat-slide-toggle>
           <span class="paddingl">Yes</span>
         </td>
         <td>
-          <button mat-raised-button type="button" class="btn btn-success" (click)="clickMethod(user.members)">Submit</button>
+          <button mat-raised-button type="button" class="btn btn-success" (click)="clickMethod(user)">Submit</button>
         </td>
       </tr>
     </tbody>

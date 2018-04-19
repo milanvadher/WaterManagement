@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class IndustryComponent implements OnInit {
 
+  allow = false;
   industry: Observable<{}[]>;
   constructor(public restProvider: RestService, public firestore: AngularFirestore) {
     this.getIndus();
@@ -24,25 +25,31 @@ export class IndustryComponent implements OnInit {
     console.log(this.industry);
   }
 
-  clickMethod(_requirement) {
-    if (confirm('Are you sure to Supply ' + _requirement + ' Liters')) {
-      this.submit(_requirement);
+  clickMethod(user) {
+    if (this.allow === true) {
+      if (confirm('Are you sure to Supply ' + user.members + ' Liters')) {
+        this.submit(user);
+      }
+    } else {
+      alert('You not supply the water');
     }
   }
 
-  submit(liter) {
-    const text = {
-      'liter': liter
-    };
-    this.restProvider.dataAPI(text)
-      .then(data => {
-        console.log(data);
-      }, (err) => {
-        console.log(err);
-      });
+  submit(user) {
+    // firestore function for raspberry pi
+    this.restProvider.dataAPIindus(user);
   }
 
   ngOnInit() {
+  }
+
+  onChange(data) {
+    if (data.checked === true) {
+      this.allow = true;
+    } else {
+      this.allow = false;
+    }
+    console.log(data);
   }
 
 }
