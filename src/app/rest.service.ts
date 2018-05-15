@@ -17,7 +17,8 @@ export class RestService {
       this.firestore.doc(`waterSupply/${id}`).set({
         id: id,
         water: data.members,
-        industryName: data.industryName
+        industryName: data.industryName,
+        flag: false
       }).then(() => {
         this.firestore.doc(`industrydata/${data.id}`).delete();
       });
@@ -33,7 +34,8 @@ export class RestService {
       this.firestore.doc(`waterSupply/${id}`).set({
         id: id,
         water: data.members * 150,
-        name: data.name
+        name: data.name,
+        flag: false
       }).then(() => {
         this.firestore.doc(`homeData/${data.id}`).delete();
       });
